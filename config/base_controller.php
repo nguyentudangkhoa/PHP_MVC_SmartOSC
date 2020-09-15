@@ -1,13 +1,13 @@
 <?php
 class BaseController
 {
-  protected $folder; // Biến có giá trị là thư mục nào đó trong thư mục views, chứa các file view template của phần đang truy cập.
-  
+  protected $folder; //Thu mục chứa view muốn truy cập
+  //Hàm gọi model
   public function model($model){
     require_once "models/$model.php";
     return new $model;
   }
-  // Hàm hiển thị kết quả ra cho người dùng.
+  // Hàm gọi view
   function render($file, $data = array())
   {
     // Kiểm tra file gọi đến có tồn tại hay không?

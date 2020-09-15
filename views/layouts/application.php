@@ -1,4 +1,3 @@
-
 <html>
 <head>
 <title>Gaming Creators a Games Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title>
@@ -50,22 +49,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="head-top">
 			<div class="logo">
 			
-				<h1><a href="/index.php?controller=pages&action=home"><span> S</span>mart <span>O</span>sc</a></h1>
+				<h1><a href="./index.php?controller=pages&action=home"><span> S</span>mart <span>O</span>sc</a></h1>
 				
 			</div>
 		<div class="top-nav">		
 			  <span class="menu"><img src="./public/assets/images/menu.png" alt=""> </span>
 				
 					<ul>
-						<li class="active"><a class="color1" href="/index.php?controller=pages&action=home"  >Home</a></li>
+						<li class="active"><a class="color1" href="./index.php?controller=pages&action=home"  >Home</a></li>
 						<li><a class="color2" href="games.html"  >Games</a></li>
 						<li><a class="color3" href="reviews.html"  >Reviews</a></li>
 						<li><a class="color4" href="404.html" >404</a></li>
-						<li><a class="color5" href="blog.html"  >Blog</a></li>
-						<li><a class="color6" href="contact.html" >Contact</a></li>
+						<?php if(!isset($_SESSION['login'])){ ?>
+						<li><a class="color5" href="./index.php?controller=signup&action=showsignup"  >SignUp</a></li>
+						<li><a class="color6" href="./index.php?controller=login&action=showlogin" >Login</a></li>
+						<?php }else {?>
+							
+							<?php if($_SESSION['login']['role']==1){?>
+							<li><a class="color6" href="./index.php?controller=admin&action=showAddProDuct" ><?php echo $_SESSION['login']['user_name']?></a></li>
+							<?php }else {?>
+								<li><a class="color6" href="" ><?php echo $_SESSION['login']['user_name']?></a></li>
+							<?php }?>
+							<li><a class="color5" href="blog.html"  >Logout</a></li>
+						<?php }?>
 						<div class="clearfix"> </div>
 					</ul>
-
 					<!--script-->
 				<script>
 					$("span.menu").click(function(){
@@ -129,44 +137,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 		</div>
 
-<!-- Code injected by live-server -->
-<script type="text/javascript">
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script></body>
-</html>
+<script src="./public/assets/js/form/login.js"></script>
+<script src="./public/assets/js/form/signup.js"></script>
+<script src="./public/assets/js/form/fileUpload.js"></script>
   </body>
 </html>

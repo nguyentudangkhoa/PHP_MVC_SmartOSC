@@ -47,6 +47,7 @@ class AdminController extends BaseController
             }
             $this->model('Admin')->AddProduct($name,$price,$image,$publisher,$quantity);
         }
+        echo "Add product success <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";
       }
     }else{
       $name = $_POST['name'];// game name

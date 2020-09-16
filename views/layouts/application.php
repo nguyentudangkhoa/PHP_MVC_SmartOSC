@@ -60,7 +60,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li class="active"><a class="color1" href="./index.php?controller=pages&action=home"  >Home</a></li>
 						<li><a class="color2" href="games.html"  >Games</a></li>
 						<li><a class="color3" href="reviews.html"  >Reviews</a></li>
-						<li><a class="color4" href="404.html" >404</a></li>
+						<li><a class="color4" href="#" id="cart-link" data-toggle="modal" data-target="#myModal">cart</a></li>
 						<?php if(!isset($_SESSION['login'])){ ?>
 						<li><a class="color5" href="./index.php?controller=signup&action=showsignup"  >SignUp</a></li>
 						<li><a class="color6" href="./index.php?controller=login&action=showlogin" >Login</a></li>
@@ -90,6 +90,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 </div>
+<?php require_once "./views/modal/modal.php"?>
 	<?= @$content ?>
 	
 	<div class="footer">
@@ -141,5 +142,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="./public/assets/js/form/login.js"></script>
 <script src="./public/assets/js/form/signup.js"></script>
 <script src="./public/assets/js/form/fileUpload.js"></script>
+<script src="./public/assets/js/form/cart.js"></script>
   </body>
 </html>

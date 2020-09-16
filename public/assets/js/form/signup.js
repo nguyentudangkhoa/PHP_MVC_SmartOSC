@@ -13,6 +13,7 @@ $(document).ready(function() {
     $('#form-signup').on('submit', function(e) {
         e.preventDefault();
         var form_data = new FormData(this);
+
         if (form_data.get('username') == "") {
             alert("Username cant empty");
         } else if (check(form_data.get('username')) == true) {
@@ -36,7 +37,6 @@ $(document).ready(function() {
                     var jsonData = JSON.parse(data);
                     if (jsonData.report) {
                         alert(jsonData.report);
-                        window.location.replace(jsonData.route);
                     } else {
                         alert('Invalid Credentials!');
                     }

@@ -1,6 +1,8 @@
 <?php
 require_once('config/base_controller.php');
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 class AdminController extends BaseController
 {
   function __construct()
@@ -13,51 +15,41 @@ class AdminController extends BaseController
     $this->render('admin', []);
   }
   public function addProduct(){
-    $target_dir =  $_SERVER['DOCUMENT_ROOT']."/test/public/images/";
-    $target_file = $target_dir . basename( $_FILES["images"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-
-    // Check if image file is a actual image or fake image
-    if(isset($_POST["submit"])) {
-      $check = getimagesize($_FILES["images"]["tmp_name"]);
-      if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-      } else {
-        echo "File is not an image.";
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $publisher = $_POST['publisher'];
+    $quantity = $_POST['quantity'];
+    if($name = ""){
+      echo "Name of the game cant empty <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";
+    }else if($price = ""){
+      echo "Price of the game cant empty <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";
+    }else if(is_numeric($price)){
+      echo "Price must be a number <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";
+    }else if($publisher = ""){
+      echo "Publisher of the game cant empty <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";
+    }else if($quantity = ""){
+      echo "Quantity of the game cant empty <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";
+    }else if(is_numeric($quantity)){
+      echo "quantity must be a number <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";
+    }else if(!$_FILES['images']['name']){
+      echo "You must insert the image <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";
+    }else{
+      $uploadOk = 1;
+      $dir = "public/assets/images/";
+      $dir_file = $dir.basename($_FILES['images']['name']);
+      $imageFileType = pathinfo($_FILES['images']['name'],PATHINFO_EXTENSION);
+      $valid_extensions = array("jpg","jpeg","png");
+      //Check file extension 
+      if( !in_array(strtolower($imageFileType),$valid_extensions) ) {
         $uploadOk = 0;
-      }
-    }
-
-    // Check if file already exists
-    if (file_exists($target_file)) {
-      echo "Sorry, file already exists.";
-      $uploadOk = 0;
-    }
-
-    // Check file size
-    if ($_FILES["images"]["size"] > 500000) {
-      echo "Sorry, your file is too large.";
-      $uploadOk = 0;
-    }
-
-    // Allow certain file formats
-    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" ) {
-      echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-      $uploadOk = 0;
-    }
-
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-      echo "Sorry, your file was not uploaded.";
-    // if everything is ok, try to upload file
-    } else {
-      if (move_uploaded_file($_FILES["images"]["tmp_name"], $target_dir)) {
-        echo "The file ". basename( $_FILES["images"]["name"]). " has been uploaded.";
-      } else {
-        echo $_FILES["images"]["tmp_name"];
+        echo "extension must be JPG, JPEG, PNG <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";
+      }else{
+        if(move_uploaded_file($_FILES['images']['tmp_name'],$dir_file)){
+          $this->model('Admin')->AddProduct($_POST['name'],$_POST['price'],($_FILES['images']['name']),$_POST['publisher'],$_POST['quantity']);
+          echo "Add product success <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";
+        }else{
+          echo "Cant add product product success <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";;
+        }
       }
     }
   }

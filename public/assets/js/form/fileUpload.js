@@ -1,7 +1,8 @@
 $(document).ready(function() {
-    $('#form-game').submit(function(e) {
+    $('#form-game').on('submit', function(e) {
         e.preventDefault();
         var form_data = new FormData(this);
+
         if (form_data.get('name') == "") {
             alert("Name of the game cant empty");
         } else if (form_data.get('price') == "") {
@@ -14,12 +15,10 @@ $(document).ready(function() {
             alert("Price cant empty");
         } else if (isNaN(parseInt(form_data.get('quantity')))) {
             alert("Quantity mus be a number");
-        } else if (form_data.get('images') == null) {
-            alert("Please insert image");
         } else {
             $.ajax({
                 type: "POST",
-                url: '',
+                url: './index.php?controller=admin&action=addProduct',
                 data: {
                     name: form_data.get('name'),
                     price: form_data.get('price'),
@@ -27,11 +26,12 @@ $(document).ready(function() {
                     quantity: form_data.get('quantity'),
                     images: form_data.get('images')
                 },
+                processData: false,
+                contentType: false,
                 success: function(data) {
-
                     var jsonData = JSON.parse(data);
                     if (jsonData.report) {
-                        console.log(jsonData.report);
+                        alert(jsonData.report);
                     } else {
                         alert('Invalid Credentials!');
                     }

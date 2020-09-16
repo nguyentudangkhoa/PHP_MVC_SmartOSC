@@ -19,6 +19,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//fonts-->
 <script src="./public/assets/js/modernizr.custom.js"></script>
 	<link rel="stylesheet" type="text/css" href="public/assets/css/component.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body> 
 <!--header-->	
@@ -70,7 +71,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<?php }else {?>
 								<li><a class="color6" href="" ><?php echo $_SESSION['login']['user_name']?></a></li>
 							<?php }?>
-							<li><a class="color5" href="blog.html"  >Logout</a></li>
+							<li><a class="color5" href="./index.php?controller=login&action=logout">Logout</a></li>
 						<?php }?>
 						<div class="clearfix"> </div>
 					</ul>

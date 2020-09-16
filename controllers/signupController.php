@@ -1,6 +1,8 @@
 <?php
 require_once('config/base_controller.php');
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 class SignupController extends BaseController
 {
   function __construct()
@@ -13,9 +15,9 @@ class SignupController extends BaseController
     $this->render('signup', []);
   }
   public function signup(){
-      $user_name = $_POST['username'];
-      $password = $_POST['password'];
-      $re_password = $_POST['re_password'];
+      $user_name = $_POST['username'];//user name
+      $password = $_POST['password'];//user password
+      $re_password = $_POST['re_password'];// reenter password
       if($user_name == ""){
         echo json_encode(array('report' => 'Username cant empty"'));
       }else if(preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $user_name) ){

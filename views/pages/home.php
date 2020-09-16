@@ -73,20 +73,22 @@
 					<ul id="og-grid"  class="og-grid">
 						<?php while($row = mysqli_fetch_array($data)){ ?>
 						<li style="margin-bottom: 40px;">
-							<a href="./index.php?controller=pages&action=single&id=<?php echo $row['id'];?>" data-largesrc="./public/assets/images/<?php echo $row['image']; ?>" class="link-sg" data-linksg="" data-title="<?php echo $row['name'];?>" data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque malesuada purus a convallis dictum. Phasellus sodales varius diam, non sagittis lectus. Morbi id magna ultricies ipsum condimentum scelerisque vel quis felis.. Donec et purus nec leo interdum sodales nec sit amet magna. Ut nec suscipit purus, quis viverra urna.">
-							<div class="top">
-							<img class="" src="./public/assets/images/<?php echo $row['image']; ?>" width="200px" height="200px" alt="img01"/>
-							</div>
-							<div class="bottom">
-							<label style="font-size:20px"> <?php echo $row['name'];?></label>
-							</div>
-							</a>
-							<div class="price">
-								<label style="font-size:20px; color:red"><?php echo number_format($row['price']); ?> VND</label>
-							</div>
-							<div class="price">
-								<button class="btn btn-primary" > Add to cart</button>
-							</div>
+							<form action="">
+								<a href="./index.php?controller=pages&action=single&id=<?php echo $row['id'];?>" data-largesrc="./public/assets/images/<?php echo $row['image']; ?>" class="link-sg" data-linksg="" data-title="<?php echo $row['name'];?>" data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque malesuada purus a convallis dictum. Phasellus sodales varius diam, non sagittis lectus. Morbi id magna ultricies ipsum condimentum scelerisque vel quis felis.. Donec et purus nec leo interdum sodales nec sit amet magna. Ut nec suscipit purus, quis viverra urna.">
+								<div class="top">
+								<img class="" src="<?php echo $row['image']; ?>" width="200px" height="200px" alt="img01"/>
+								</div>
+								<div class="bottom">
+								<label style="font-size:20px"> <?php echo $row['name'];?></label>
+								</div>
+								</a>
+								<div class="price">
+									<label style="font-size:20px; color:red"><?php echo number_format($row['price']); ?> VND</label>
+								</div>
+								<div class="price">
+									<button class="btn btn-primary" > Add to cart</button>
+								</div>
+							</form>
 						</li>
 						<?php } ?>
 						<div class="clearfix"> </div>

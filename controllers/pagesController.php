@@ -1,6 +1,8 @@
 <?php
 require_once('config/base_controller.php');
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 class PagesController extends BaseController
 {
   function __construct()
@@ -11,7 +13,7 @@ class PagesController extends BaseController
   public function home()
   {
     
-    $data = $this->model('Game')->GetGame();
+    $data = $this->model('Game')->GetGame();// get method of model Game
     $this->render('home', ['data'=>$data]);
   }
   public function single(){

@@ -73,7 +73,8 @@
 					<ul id="og-grid"  class="og-grid">
 						<?php while($row = mysqli_fetch_array($data)){ ?>
 						<li style="margin-bottom: 40px;">
-							<form action="">
+							<form  class="form-cart" data-id="<?php echo $row['id'] ?>">
+							<input type="hidden" name="id"id="text<?php echo $row['id'] ?>" value="<?php echo $row['id'] ?>">
 								<a href="./index.php?controller=pages&action=single&id=<?php echo $row['id'];?>" data-largesrc="./public/assets/images/<?php echo $row['image']; ?>" class="link-sg" data-linksg="" data-title="<?php echo $row['name'];?>" data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque malesuada purus a convallis dictum. Phasellus sodales varius diam, non sagittis lectus. Morbi id magna ultricies ipsum condimentum scelerisque vel quis felis.. Donec et purus nec leo interdum sodales nec sit amet magna. Ut nec suscipit purus, quis viverra urna.">
 								<div class="top">
 								<img class="" src="<?php echo $row['image']; ?>" width="200px" height="200px" alt="img01"/>

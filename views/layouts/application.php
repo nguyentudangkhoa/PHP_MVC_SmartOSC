@@ -19,7 +19,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//fonts-->
 <script src="./public/assets/js/modernizr.custom.js"></script>
 	<link rel="stylesheet" type="text/css" href="public/assets/css/component.css" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body> 
 <!--header-->	
@@ -60,7 +59,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li class="active"><a class="color1" href="./index.php?controller=pages&action=home"  >Home</a></li>
 						<li><a class="color2" href="games.html"  >Games</a></li>
 						<li><a class="color3" href="reviews.html"  >Reviews</a></li>
-						<li><a class="color4" href="#" id="cart-link" data-toggle="modal" data-target="#myModal">cart</a></li>
+						<li><a class="color4" href="./index.php?controller=cart&action=showCart" id="cart-link" data-toggle="modal" data-target="#myModal">cart
+							<?php
+								if(isset($_SESSION['cart'])){?>
+								<p id="session_cart"> <?php echo "(".$_SESSION['cart']['totalQty'].")";?></p>
+									
+								
+							<?php }?>
+						</a></li>
 						<?php if(!isset($_SESSION['login'])){ ?>
 						<li><a class="color5" href="./index.php?controller=signup&action=showsignup"  >SignUp</a></li>
 						<li><a class="color6" href="./index.php?controller=login&action=showlogin" >Login</a></li>

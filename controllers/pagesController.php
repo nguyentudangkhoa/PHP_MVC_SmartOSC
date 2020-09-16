@@ -12,7 +12,6 @@ class PagesController extends BaseController
 
   public function home()
   {
-    
     $data = $this->model('Game')->GetGame();// get method of model Game
     $this->render('home', ['data'=>$data]);
   }

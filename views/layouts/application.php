@@ -27,9 +27,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 		<div class="top-head" >	
 			<ul class="header-in">
-				<li ><a href="#" >  Help</a></li>
-				<li><a href="contact.html">   Contact Us</a></li>
-				<li ><a href="#" >   How To Use</a></li>
 			</ul>
 				<div class="search">
 					<form>
@@ -56,9 +53,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			  <span class="menu"><img src="./public/assets/images/menu.png" alt=""> </span>
 				
 					<ul>
-						<li class="active"><a class="color1" href="./index.php?controller=pages&action=home"  >Home</a></li>
-						<li><a class="color2" href="games.html"  >Games</a></li>
-						<li><a class="color3" href="reviews.html"  >Reviews</a></li>
 						<li><a class="color4" href="./index.php?controller=cart&action=showCart" id="cart-link" data-toggle="modal" data-target="#myModal">cart
 							<?php
 								if(isset($_SESSION['cart'])){?>

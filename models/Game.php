@@ -2,7 +2,7 @@
 require_once "config/connection.php";
 class Game extends DB{
     public function GetGame(){
-        $sql = "SELECT * FROM products";
+        $sql = "SELECT * FROM products where quantity > 0";
         return mysqli_query($this->conn,$sql);
     }
     public function GetSingle($user_name){

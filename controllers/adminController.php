@@ -55,18 +55,22 @@ class AdminController extends BaseController
       $publisher = $_POST['publisher'];// game publhser
       $quantity = $_POST['quantity'];// quantity
       //validate
-      if($name = ""){
+      if($_POST['name']== ""){
         echo "Name of the game cant empty <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";
-      }else if($price = ""){
+      }else if($_POST['price'] == ""){
         echo "Price of the game cant empty <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";
-      }else if(is_numeric($price)){
+      }else if(is_numeric($_POST['price'])){
         echo "Price must be a number <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";
-      }else if($publisher = ""){
+      }else if((int)$_POST['price']>0){
+        echo "Price is heigher than 0 <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";
+      }else if($_POST['publisher'] ==""){
         echo "Publisher of the game cant empty <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";
-      }else if($quantity = ""){
+      }else if($_POST['quantity']== ""){
         echo "Quantity of the game cant empty <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";
-      }else if(is_numeric($quantity)){
+      }else if(is_numeric($_POST['quantity'])){
         echo "quantity must be a number <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";
+      }else if((int)$_POST['quantity']>0){
+        echo "Quantity is heigher than 0 <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";
       }else if(!$_FILES['images']['name']){
         echo "You must insert the image <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";
       }else{
@@ -81,7 +85,7 @@ class AdminController extends BaseController
         //Check file extension 
         
           if(move_uploaded_file($_FILES['images']['tmp_name'],$dir_file)){
-            $this->model('Admin')->AddProduct($name,$price,('./public/assets/images/'.$_FILES['images']['name']),$publisher,$quantity);
+            $this->model('Admin')->AddProduct($_POST['name'],(int)$_POST['price'],('./public/assets/images/'.$_FILES['images']['name']),$_POST['publisher'],(int)$_POST['quantity']);
             echo "Add product success <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";
           }else{
             echo "Cant add product product success <a href='./index.php?controller=admin&action=showAddProDuct'> Go back</a>";;
